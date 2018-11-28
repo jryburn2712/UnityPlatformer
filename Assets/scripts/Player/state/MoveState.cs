@@ -34,8 +34,9 @@ class MoveState : State
          * the "A" key, the value stored in "MoveX" will be -1, so multiplying the playerSpeed (10) by -1 will move the character
          * -10 units on the x-axis (aka 10 units to the left). The Y velocity remains the same as it was.
          */
+        
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.MoveX * player.PlayerSpeed, player.GetComponent<Rigidbody2D>().velocity.y);
-       
+        
     }
 
     //Flips character on the x-axis and sets the facingRight flag.
