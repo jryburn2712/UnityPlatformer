@@ -44,6 +44,12 @@ TagManager:
   - name: BackGround
     uniqueID: 1565861187
     locked: 0
-  - name: ForeGround
-    uniqueID: 1091503843
+  - name: Decoration
+    uniqueID: 2146665625
+    locked: 0
+  - name: Ground
+    uniqueID: 3522136203
+    locked: 0
+  - name: Alive
+    uniqueID: 1963202421
     locked: 0
