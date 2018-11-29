@@ -27,10 +27,10 @@ class InputSystem : MonoBehaviour
          * 
          */
         player.SetMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump.Execute(player);
-        }
+        //if (Input.GetButtonDown("Jump"))
+        //{
+        //  jump.Execute(player);
+        //}
     }
 
     void FixedUpdate()
@@ -39,10 +39,15 @@ class InputSystem : MonoBehaviour
         {         
             //Character was moving, execute the move command. See classes MoveCommand and MoveState.
             move.Execute(player);
-        } else
+        } 
+        else
         {                       
             //The character was not moving, so execute idle command. See classes IdleCommand and IdleState.
             idle.Execute(player);
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            jump.Execute(player);
         }
     }
 
