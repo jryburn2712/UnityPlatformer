@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 class IdleState : State
 {
@@ -23,4 +22,3 @@ class IdleState : State
             
     }
 }
-

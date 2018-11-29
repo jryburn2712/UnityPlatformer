@@ -1,6 +1,4 @@
-﻿
-
-public abstract class State : IState
+﻿public abstract class State : IState
 {
     public virtual void OnStateEnter(Player player)
     {

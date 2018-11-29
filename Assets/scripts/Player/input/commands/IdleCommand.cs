@@ -1,5 +1,4 @@
-﻿
-class IdleCommand : Command
+﻿class IdleCommand : Command
 {
     private IdleState idleState;
 
@@ -13,4 +12,3 @@ class IdleCommand : Command
         player.State.SetState(player, idleState);
     }
 }
-

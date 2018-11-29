@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 /*
  * Main player script
  */
@@ -8,7 +7,7 @@
 public class Player : MonoBehaviour {
 
     [SerializeField]
-    private float jumpForce = 500;
+    public float jumpForce = 500;
     
     //Change this to increase or decrease character movement speed
     public float PlayerSpeed = 700.0f;

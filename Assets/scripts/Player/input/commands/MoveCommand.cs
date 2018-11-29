@@ -1,5 +1,4 @@
-﻿
-class MoveCommand : Command
+﻿class MoveCommand : Command
 {
 
     private MoveState moveState;
@@ -14,4 +13,3 @@ class MoveCommand : Command
         player.State.SetState(player, moveState);
     }
 }
-

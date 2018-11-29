@@ -30,7 +30,6 @@ class MoveState : State
         Move(player);
     }
 
-
     /*
      * Each of the values in the Player's Movement Vector2 will be multiplied by the PLayer's movement speed.
      * The x and y values in the Vector2 will always be between -1 and 1, depending on which button was pressed

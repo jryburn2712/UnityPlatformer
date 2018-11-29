@@ -1,13 +1,9 @@
-﻿
-
-
-using UnityEngine;
+﻿using UnityEngine;
 
 class InputSystem : MonoBehaviour
 {
-
     private Player player;
-    private Command move, idle;
+    private Command move, jump, idle;
 
     void Awake()
     {
@@ -15,6 +11,7 @@ class InputSystem : MonoBehaviour
         player = GetComponent<Player>();
 
         move = new MoveCommand();
+        jump = new JumpCommand();
         idle = new IdleCommand();
     }
 
@@ -30,6 +27,10 @@ class InputSystem : MonoBehaviour
          * 
          */
         player.SetMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (Input.GetButtonDown("Jump"))
+        {
+            jump.Execute(player);
+        }
     }
 
     void FixedUpdate()
@@ -51,6 +52,4 @@ class InputSystem : MonoBehaviour
     {
         return player.Movement.x != 0;
     }
-
 }
-
