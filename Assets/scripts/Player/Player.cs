@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     private float jumpForce = 500;
     
     //Change this to increase or decrease character movement speed
-    public float PlayerSpeed = 700.0f;
+    public float PlayerSpeed = 370.0f;
 
     public Vector2 Movement { get; set; }
 
