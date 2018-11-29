@@ -2,13 +2,14 @@
 class IdleCommand : Command
 {
     private IdleState idleState;
-    public override void Execute(Player player)
+
+    public IdleCommand()
     {
-        //Initialize idleState if it's not already initialized.
-        if (idleState == null)
-        {
-            idleState = new IdleState();
-        }
+        idleState = new IdleState();
+    }
+
+    public override void Execute(Player player)
+    {    
         player.State.SetState(player, idleState);
     }
 }

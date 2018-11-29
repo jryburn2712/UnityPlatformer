@@ -10,13 +10,12 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private float jumpForce = 500;
     
-    public float MoveX { get; set; }
+    //Change this to increase or decrease character movement speed
+    public float PlayerSpeed = 700.0f;
 
-    public float PlayerSpeed = 10;
+    public Vector2 Movement { get; set; }
 
-    public bool IsMoving { get; set; }
-
-    public bool FacingRight = false;
+    public bool FacingLeft = false;
 
     public IState State { get; set; }
 
@@ -27,8 +26,8 @@ public class Player : MonoBehaviour {
         //Character will start idle
         playerAnimator = GetComponent<Animator>();
         State = new IdleState();
-	}
-	
+	}    
+
 	// Update is called once per frame
 	void Update () {
         /*
@@ -38,4 +37,10 @@ public class Player : MonoBehaviour {
          */
         State.Tick(this);
 	}
+
+    //Sets the Movement Vector2. Called from InputSystem Update loop.
+    public void SetMovement(float x, float y)
+    {
+        Movement = new Vector2(x, y);
+    }
 }

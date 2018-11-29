@@ -3,13 +3,14 @@ class MoveCommand : Command
 {
 
     private MoveState moveState;
-    public override void Execute(Player player)
+
+    public MoveCommand()
     {
-        //Initialize moveState if it's not already initialized.
-        if (moveState == null)
-        {
-            moveState = new MoveState();
-        }
+        moveState = new MoveState();
+    }
+
+    public override void Execute(Player player)
+    {        
         player.State.SetState(player, moveState);
     }
 }

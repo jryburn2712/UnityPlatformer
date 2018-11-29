@@ -20,30 +20,36 @@ class InputSystem : MonoBehaviour
 
     void Update()
     {
-        /*Determine if the charcter is moving horizontally (A, D, LEFT, or RIGHT were pressed).
-         * This method will return a number between -1 and 1, depending on which button was pressed.
-         * A or LEFT = -1, D or RIGHT = 1, Nothing = 0.
+        /*
+         * Use the axis to determine if a button was pressed. This avoids hardcoding specific keys into the code.
+         * The GetAxis() methods return a value between -1 and 1. If the negative button was pressed, the value will be 
+         * below 0. If the positive button was pressed, the value will be above 0. If nothing was pressed, the value will
+         * be 0. These values will be multiplied by the player speed to determine the how far the character should move, as
+         * well as which direction he should be facing. To see which keys are currently bound to the negative and positive
+         * buttons (i.e A, D, left, right, etc...), in Unity use Edit ---> Project Settings ---> Input
+         * 
          */
-        player.MoveX = Input.GetAxisRaw("Horizontal");
+        player.SetMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
     void FixedUpdate()
     {
-        if (player.MoveX != 0)
-        {
-            //Setting this is not necessary right now, but may be useful in the future.
-            player.IsMoving = true;
-
+        if (ShouldMove())
+        {         
             //Character was moving, execute the move command. See classes MoveCommand and MoveState.
             move.Execute(player);
         } else
-        {
-
-            player.IsMoving = false;
-            
+        {                       
             //The character was not moving, so execute idle command. See classes IdleCommand and IdleState.
             idle.Execute(player);
         }
+    }
+
+    //Determines if the character should be switched to the MoveState based on the X value of the characters's 
+    //Movement Vector2. If the x value is not 0, then the character is moving.
+    private bool ShouldMove()
+    {
+        return player.Movement.x != 0;
     }
 
 }
