@@ -4,15 +4,18 @@
  * Main player script
  */
 
-public class Player : MonoBehaviour {
-
-    [SerializeField]
+public class Player : MonoBehaviour 
+{
     public float jumpForce = 500;
     
     //Change this to increase or decrease character movement speed
-    public float PlayerSpeed = 370.0f;
+    public float PlayerSpeed = 10;
 
     public Vector2 Movement { get; set; }
+
+    public bool Jumping = false;
+
+    public bool isGrounded;
 
     public bool FacingLeft = false;
 
@@ -41,5 +44,10 @@ public class Player : MonoBehaviour {
     public void SetMovement(float x, float y)
     {
         Movement = new Vector2(x, y);
+    }
+
+    public void SetJump(bool jump)
+    {
+        Jumping = jump;
     }
 }

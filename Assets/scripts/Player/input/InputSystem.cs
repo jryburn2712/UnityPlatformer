@@ -27,22 +27,24 @@ class InputSystem : MonoBehaviour
          * 
          */
         player.SetMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        player.SetJump(Input.GetButtonDown("Jump"));
     }
 
     void FixedUpdate()
     {
-        if (ShouldMove())
-        {         
-            //Character was moving, execute the move command. See classes MoveCommand and MoveState.
-            move.Execute(player);
-        } 
-        else
+        if (!ShouldMove())
         {                       
             //The character was not moving, so execute idle command. See classes IdleCommand and IdleState.
             idle.Execute(player);
         }
-        if (Input.GetButtonDown("Jump"))
+        if (ShouldMove())
+        {         
+            //Character was moving, execute the move command. See classes MoveCommand and MoveState.
+            move.Execute(player);
+        }
+        if (ShouldJump())
         {
+            //Check if the character isnt already jumping by reaading the velocity of the Y axis
             jump.Execute(player);
         }
     }
@@ -52,5 +54,11 @@ class InputSystem : MonoBehaviour
     private bool ShouldMove()
     {
         return player.Movement.x != 0;
+    }
+
+    private bool ShouldJump()
+    {
+        //return player.Jumping && player.isGrounded;
+        return player.Jumping && player.GetComponent<Rigidbody2D>().velocity.magnitude == 0;
     }
 }
