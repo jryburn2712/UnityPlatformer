@@ -27,10 +27,6 @@ class InputSystem : MonoBehaviour
          * 
          */
         player.SetMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //  jump.Execute(player);
-        //}
     }
 
     void FixedUpdate()

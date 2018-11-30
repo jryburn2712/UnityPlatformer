@@ -38,7 +38,8 @@ class MoveState : State
      */
     private void Move(Player player)
     {
-        player.GetComponent<Rigidbody2D>().velocity = player.Movement * player.PlayerSpeed * Time.deltaTime;
+        //player.GetComponent<Rigidbody2D>().velocity = player.Movement * player.PlayerSpeed * Time.deltaTime;
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.Movement.x * player.PlayerSpeed, player.GetComponent<Rigidbody2D>().velocity.y);
     }
 
     //Flips character on the x-axis and sets the facingRight flag.

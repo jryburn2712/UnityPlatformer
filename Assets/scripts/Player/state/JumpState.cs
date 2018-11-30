@@ -14,6 +14,10 @@ class JumpState : State
 
     private void Jump(Player player)
     {
-        player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * player.jumpForce);
+        if(player.GetComponent<Rigidbody2D>().velocity.magnitude == 0)
+        {
+            player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * player.jumpForce);
+        }
+        //player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * player.jumpForce);
     }
 }
