@@ -6,29 +6,35 @@
 
 public class Player : MonoBehaviour 
 {
+    //Change this to increase or decrease character jump speed
     public float jumpForce = 500;
     
     //Change this to increase or decrease character movement speed
-    public float PlayerSpeed = 10;
+    public float PlayerSpeed = 10;   
 
-    public Vector2 Movement { get; set; }
-
-    public bool Jumping = false;
+    public bool isJumping;
 
     public bool isGrounded;
 
-    public bool FacingLeft = false;
-
-    public IState State { get; set; }
+    public bool isFacingLeft = false;
 
     public Animator playerAnimator;
+
+    public Rigidbody2D CachedRigidBody;
+
+    public Vector2 Movement { get; set; }
+
+    public IState State { get; set; }
 
     // Use this for initialization
     void Start () {
         //Character will start idle
         playerAnimator = GetComponent<Animator>();
         State = new IdleState();
-	}    
+
+        //Characters Rigidbody component will be cached as a variable
+        CachedRigidBody = GetComponent<Rigidbody2D>();
+    }    
 
 	// Update is called once per frame
 	void Update () {
@@ -46,8 +52,10 @@ public class Player : MonoBehaviour
         Movement = new Vector2(x, y);
     }
 
-    public void SetJump(bool jump)
+    //Sets Jump by checking the "Jump" input is true and Y Velocity is at 0 to avoid continuous jumps. Called from InputSystem Update loop.
+    public void SetJump(bool jump, float verticalVelocity)
     {
-        Jumping = jump;
+        isJumping = jump;
+        isGrounded = verticalVelocity == 0;
     }
 }

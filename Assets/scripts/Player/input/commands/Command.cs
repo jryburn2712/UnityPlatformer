@@ -1,4 +1,4 @@
 ﻿   public abstract class Command
     {
-    public abstract void Execute(Player player);
+        public abstract void Execute(Player player);
     }

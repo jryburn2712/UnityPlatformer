@@ -1,6 +1,6 @@
-﻿public class JumpCommand : Command
+﻿class JumpCommand : Command
 {
-	 private JumpState jumpState;
+	private JumpState jumpState;
 
     public JumpCommand()
     {

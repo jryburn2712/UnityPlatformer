@@ -17,6 +17,5 @@
         player.State.OnStateEnter(player);
     }
 
-    public abstract void Tick(Player player);
-    
+    public abstract void Tick(Player player);    
 }

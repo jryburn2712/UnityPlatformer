@@ -27,7 +27,7 @@ class InputSystem : MonoBehaviour
          * 
          */
         player.SetMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        player.SetJump(Input.GetButtonDown("Jump"));
+        player.SetJump(Input.GetButtonDown("Jump"), player.CachedRigidBody.velocity.y);
     }
 
     void FixedUpdate()
@@ -44,7 +44,7 @@ class InputSystem : MonoBehaviour
         }
         if (ShouldJump())
         {
-            //Check if the character isnt already jumping by reaading the velocity of the Y axis
+            //Character was jumping, execute the jump command. See classes JumpCommand and JumpState.
             jump.Execute(player);
         }
     }
@@ -56,9 +56,10 @@ class InputSystem : MonoBehaviour
         return player.Movement.x != 0;
     }
 
+    //Determines if the Character should be jumping based on the the 2 bools which correspond to
+    //1. if the "Jump" input is pressed (true) and 2. the velocity of the Y axis is at 0 (true).
     private bool ShouldJump()
     {
-        //return player.Jumping && player.isGrounded;
-        return player.Jumping && player.GetComponent<Rigidbody2D>().velocity.magnitude == 0;
+        return player.isJumping && player.isGrounded;
     }
 }

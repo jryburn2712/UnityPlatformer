@@ -1,6 +1,5 @@
 ﻿class MoveCommand : Command
 {
-
     private MoveState moveState;
 
     public MoveCommand()

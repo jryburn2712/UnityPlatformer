@@ -1,6 +1,4 @@
-﻿
-
-public interface IState
+﻿public interface IState
 {
     void OnStateEnter(Player player);
     void OnStateExit(Player player);

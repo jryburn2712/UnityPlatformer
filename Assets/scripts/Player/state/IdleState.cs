@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
 class IdleState : State
-{
-    
+{    
     public override void OnStateEnter(Player player)
     {
         base.OnStateEnter(player);
