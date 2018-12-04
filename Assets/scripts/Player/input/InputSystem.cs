@@ -12,7 +12,6 @@ class InputSystem : MonoBehaviour
 
     void Update()
     {
-        
         //Nothing was pressed
         if (!Input.anyKey)
         {
@@ -27,11 +26,13 @@ class InputSystem : MonoBehaviour
         {
             player.State.OnMovePressed(player, Direction.RIGHT);
         }
-        if (Input.GetKeyDown(KeyCode.Space)) // jump
+        if (Input.GetButtonDown("Jump")) // jump
         {
             player.State.OnJumpPressed(player);
         }
-
+        if (Input.GetButtonDown("Fire1")) // attack
+        {
+            player.State.OnAttackPressed(player);
+        }
     }
-
 }

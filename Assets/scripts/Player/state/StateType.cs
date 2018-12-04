@@ -1,6 +1,4 @@
-﻿
-public enum StateType
+﻿public enum StateType
 {
-    IDLE, MOVE, JUMP
+    IDLE, MOVE, JUMP, ATTACK
 }
-

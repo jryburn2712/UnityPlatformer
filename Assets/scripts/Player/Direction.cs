@@ -1,6 +1,4 @@
-﻿
-public enum Direction
+﻿public enum Direction
 {
     LEFT, RIGHT
 }
-

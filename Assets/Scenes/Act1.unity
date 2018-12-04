@@ -267,12 +267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6ec7f3efe759d4280dd95fff290426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 500
-  PlayerSpeed: 10
-  Jumping: 0
-  isGrounded: 0
-  FacingLeft: 0
+  jumpForce: 10
+  isFacingLeft: 0
+  PlayerSpeed: 100
   playerAnimator: {fileID: 0}
+  CachedRigidBody: {fileID: 0}
 --- !u!114 &42672711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,11 +544,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 500
+  isFacingLeft: 0
   PlayerSpeed: 10
-  Jumping: 0
-  isGrounded: 0
-  FacingLeft: 0
   playerAnimator: {fileID: 0}
+  CachedRigidBody: {fileID: 0}
 --- !u!50 &2106778656
 Rigidbody2D:
   serializedVersion: 4

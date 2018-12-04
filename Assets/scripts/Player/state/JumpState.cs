@@ -8,6 +8,12 @@ class JumpState : State
 	public override void OnStateEnter(Player player)
 	{
         beforeJump = true;
+
+        //Start Jump Animation. Check to make sure it's not already playing.
+        if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_jump"))
+        {
+            player.playerAnimator.Play("male_jump");
+        }
     }
 
     public override void OnMovePressed(Player player, Direction direction)
@@ -20,14 +26,19 @@ class JumpState : State
         
     }
 
+    public override void OnAttackPressed(Player player)
+    {
+        base.OnAttackPressed(player);
+        player.State.SetState(player, player.states[StateType.ATTACK]);
+    }
+
     public override void Tick(Player player)
     {       
         Jump(player);
     }
 
     private void Jump(Player player)
-    {      
-
+    {
         if (isGrounded(player))
         {
             /*The player can be grounded either before or after the jump. When jumpState state is entered,
@@ -40,9 +51,10 @@ class JumpState : State
             */
             if (beforeJump)
             {
-                player.CachedRigidBody.AddForce(new Vector2(0, player.jumpForce * Time.deltaTime), ForceMode2D.Impulse);
+                player.CachedRigidBody.AddForce(new Vector2(0, player.jumpForce), ForceMode2D.Impulse);
                 beforeJump = false;
-            } else
+            }
+            else
             {
                 player.State.SetState(player, player.states[StateType.IDLE]);
             }
@@ -55,5 +67,4 @@ class JumpState : State
         return player.CachedRigidBody.velocity.y == 0;
         
     }
-
 }

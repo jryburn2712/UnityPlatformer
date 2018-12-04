@@ -8,11 +8,11 @@ using UnityEngine;
 public class Player : MonoBehaviour 
 {
     //Change this to increase or decrease character jump speed
-    public float jumpForce = 300.0f;
+    public float jumpForce = 10.0f;
 
     public bool isFacingLeft = false;
 
-    public float PlayerSpeed = 500.0f;
+    public float PlayerSpeed = 100.0f;
 
     public Dictionary<StateType, State> states;
 
@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D CachedRigidBody;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         //Character will start idle
         states = initStates();
         playerAnimator = GetComponent<Animator>();
@@ -35,7 +36,8 @@ public class Player : MonoBehaviour
 
       
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         /*
          * Everything the character does will be handled by its current state (idle, moving, jumping, etc...).
          * The state is changed by the InputSystem based on which controls the user presses.
@@ -50,9 +52,8 @@ public class Player : MonoBehaviour
         states[StateType.IDLE] = new IdleState();
         states[StateType.MOVE] = new MoveState();
         states[StateType.JUMP] = new JumpState();
+        states[StateType.ATTACK] = new AttackState();
 
         return states;
     }
-        
-    
 }

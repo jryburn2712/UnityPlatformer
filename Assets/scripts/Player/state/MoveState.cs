@@ -2,15 +2,14 @@
 
 class MoveState : State
 {
-
     private bool movingLeft;
     private bool movingRight;
     private Direction direction;
 
-
     public override void OnStateEnter(Player player)
     {
         base.OnStateEnter(player);
+
         if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_walk"))
         {
             player.playerAnimator.Play("male_walk");
@@ -27,6 +26,7 @@ class MoveState : State
     public override void OnMovePressed(Player player, Direction direction)
     {
         base.OnMovePressed(player, direction);
+
         switch (direction)
         {
             case Direction.LEFT:              
@@ -40,7 +40,6 @@ class MoveState : State
         }
 
         this.direction = direction;
-        
     }
 
     public override void OnMoveReleased(Player player, Direction direction)
@@ -53,6 +52,13 @@ class MoveState : State
         base.OnJumpPressed(player);
         player.State.SetState(player, player.states[StateType.JUMP]);
         player.State.OnJumpPressed(player);
+    }
+
+    public override void OnAttackPressed(Player player)
+    {
+        base.OnAttackPressed(player);
+        player.State.SetState(player, player.states[StateType.ATTACK]);
+        player.State.OnAttackPressed(player);
     }
 
     public override void OnNothingPressed(Player player)
@@ -68,8 +74,7 @@ class MoveState : State
      * if total value is positive). This value is multiplied by the delta time to keep the framerate smooth.
      */
     private void Move(Player player)
-    {
-              
+    {              
         if (movingLeft)
         {
             if (!player.isFacingLeft)
@@ -77,7 +82,8 @@ class MoveState : State
                 FlipPlayer(player);
             }
             player.CachedRigidBody.velocity = new Vector2(-1 * player.PlayerSpeed * Time.deltaTime, player.GetComponent<Rigidbody2D>().velocity.y);        
-        } else if (movingRight)
+        }
+        else if (movingRight)
         {
             if (player.isFacingLeft)
             {

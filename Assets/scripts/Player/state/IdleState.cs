@@ -22,8 +22,7 @@ class IdleState : State
         
         //Set the new state and pass the button press along to it.
         player.State.SetState(player, player.states[StateType.MOVE]);
-        player.State.OnMovePressed(player, direction);
-        
+        player.State.OnMovePressed(player, direction);        
     }
 
     public override void OnJumpPressed(Player player)
@@ -32,6 +31,14 @@ class IdleState : State
         //Set the new state and pass the jump press to it.
         player.State.SetState(player, player.states[StateType.JUMP]);
         player.State.OnJumpPressed(player);
+    }
+
+    public override void OnAttackPressed(Player player)
+    {
+        base.OnAttackPressed(player);
+
+        player.State.SetState(player, player.states[StateType.ATTACK]);
+        player.State.OnAttackPressed(player);
     }
 
     public override void Tick(Player player)

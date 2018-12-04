@@ -10,17 +10,24 @@ class AttackState : State
         if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_attack"))
         {
             player.playerAnimator.Play("male_attack");
-            //player.playerAnimator.SetTrigger("male_attack");
         }
     }
 
     public override void Tick(Player player)
     {
-        //Attack(player);
+        Attack(player);
     }
 
     private void Attack(Player player)
     {
-        
+        if (!isAnimationPlaying(player))
+        {
+            player.State.SetState(player, player.states[StateType.IDLE]);
+        }
+    }
+
+    private bool isAnimationPlaying(Player player)
+    {
+        return player.playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1;
     }
 }

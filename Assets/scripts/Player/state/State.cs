@@ -5,7 +5,19 @@
         
     }
 
-    public virtual void OnMovePressed(Player player, Direction direction) {
+    public virtual void OnMovePressed(Player player, Direction direction)
+    {
+
+    }
+
+    public virtual void OnAttackPressed(Player player)
+    {
+        
+    }
+
+    public virtual void OnAttackReleased(Player player)
+    {
+
     }
     
 
@@ -41,7 +53,5 @@
         player.State.OnStateEnter(player);
     }
 
-    public abstract void Tick(Player player);    
-
-
+    public abstract void Tick(Player player);
 }
