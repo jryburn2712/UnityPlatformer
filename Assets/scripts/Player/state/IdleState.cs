@@ -16,8 +16,26 @@ class IdleState : State
         }
     }
 
+    public override void OnMovePressed(Player player, Direction direction)
+    {
+        base.OnMovePressed(player, direction);
+        
+        //Set the new state and pass the button press along to it.
+        player.State.SetState(player, player.states[StateType.MOVE]);
+        player.State.OnMovePressed(player, direction);
+        
+    }
+
+    public override void OnJumpPressed(Player player)
+    {
+        base.OnJumpPressed(player);
+        //Set the new state and pass the jump press to it.
+        player.State.SetState(player, player.states[StateType.JUMP]);
+        player.State.OnJumpPressed(player);
+    }
+
     public override void Tick(Player player)
     {
-            
+        
     }
 }

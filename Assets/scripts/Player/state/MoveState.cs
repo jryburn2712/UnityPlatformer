@@ -2,30 +2,63 @@
 
 class MoveState : State
 {
+
+    private bool movingLeft;
+    private bool movingRight;
+    private Direction direction;
+
+
     public override void OnStateEnter(Player player)
     {
         base.OnStateEnter(player);
-
-        //Check if the character needs to be flipped to face the correct direction.
-        if (player.Movement.x < 0.0f && !player.isFacingLeft)
-        {
-            FlipPlayer(player);
-        }
-        else if (player.Movement.x > 0.0f && player.isFacingLeft)
-        {
-            FlipPlayer(player);
-        }
-
-        //Start Walk Animation. Check to make sure it's not already playing.
         if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_walk"))
         {
             player.playerAnimator.Play("male_walk");
         }
+
+        //OnMovePressed(player, direction);
     }
 
     public override void Tick(Player player)
-    {      
-        Move(player);
+    {        
+        Move(player);    
+    }
+
+    public override void OnMovePressed(Player player, Direction direction)
+    {
+        base.OnMovePressed(player, direction);
+        switch (direction)
+        {
+            case Direction.LEFT:              
+                movingLeft = true;
+                movingRight = false;               
+                break;
+            case Direction.RIGHT:               
+                movingRight = true;
+                movingLeft = false;                
+                break;
+        }
+
+        this.direction = direction;
+        
+    }
+
+    public override void OnMoveReleased(Player player, Direction direction)
+    {
+        base.OnMoveReleased(player, direction);
+    }
+
+    public override void OnJumpPressed(Player player)
+    {
+        base.OnJumpPressed(player);
+        player.State.SetState(player, player.states[StateType.JUMP]);
+        player.State.OnJumpPressed(player);
+    }
+
+    public override void OnNothingPressed(Player player)
+    {
+        base.OnNothingPressed(player);
+        player.State.SetState(player, player.states[StateType.IDLE]);
     }
 
     /*
@@ -36,10 +69,25 @@ class MoveState : State
      */
     private void Move(Player player)
     {
-        player.CachedRigidBody.velocity = new Vector2(player.Movement.x * player.PlayerSpeed, player.CachedRigidBody.velocity.y);
+              
+        if (movingLeft)
+        {
+            if (!player.isFacingLeft)
+            {
+                FlipPlayer(player);
+            }
+            player.CachedRigidBody.velocity = new Vector2(-1 * player.PlayerSpeed * Time.deltaTime, player.GetComponent<Rigidbody2D>().velocity.y);        
+        } else if (movingRight)
+        {
+            if (player.isFacingLeft)
+            {
+                FlipPlayer(player);
+            }
+            player.CachedRigidBody.velocity = new Vector2(player.PlayerSpeed * Time.deltaTime, player.GetComponent<Rigidbody2D>().velocity.y);
+        }
     }
 
-    //Flips character on the x-axis and sets the facingRight flag.
+    //Flips character on the x-axis and sets the facingLeft flag.
     private void FlipPlayer(Player player)
     {
         player.isFacingLeft = !player.isFacingLeft;

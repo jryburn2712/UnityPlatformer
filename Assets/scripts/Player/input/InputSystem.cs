@@ -2,64 +2,36 @@
 
 class InputSystem : MonoBehaviour
 {
-    private Player player;
-    private Command move, jump, idle;
+    private Player player;   
 
     void Awake()
     {
         //Get reference to the character that this script is attached to. (AKA the main character)
-        player = GetComponent<Player>();
-
-        move = new MoveCommand();
-        jump = new JumpCommand();
-        idle = new IdleCommand();
+        player = GetComponent<Player>();    
     }
 
     void Update()
     {
-        /*
-         * Use the axis to determine if a button was pressed. This avoids hardcoding specific keys into the code.
-         * The GetAxis() methods return a value between -1 and 1. If the negative button was pressed, the value will be 
-         * below 0. If the positive button was pressed, the value will be above 0. If nothing was pressed, the value will
-         * be 0. These values will be multiplied by the player speed to determine the how far the character should move, as
-         * well as which direction he should be facing. To see which keys are currently bound to the negative and positive
-         * buttons (i.e A, D, left, right, etc...), in Unity use Edit ---> Project Settings ---> Input
-         * 
-         */
-        player.SetMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        player.SetJump(Input.GetButtonDown("Jump"), player.CachedRigidBody.velocity.y);
-    }
-
-    void FixedUpdate()
-    {
-        if (!ShouldMove())
-        {                       
-            //The character was not moving, so execute idle command. See classes IdleCommand and IdleState.
-            idle.Execute(player);
-        }
-        if (ShouldMove())
-        {         
-            //Character was moving, execute the move command. See classes MoveCommand and MoveState.
-            move.Execute(player);
-        }
-        if (ShouldJump())
+        
+        //Nothing was pressed
+        if (!Input.anyKey)
         {
-            //Character was jumping, execute the jump command. See classes JumpCommand and JumpState.
-            jump.Execute(player);
+            player.State.OnNothingPressed(player);
+            return;
         }
+        if (Input.GetAxis("Horizontal") < 0) //Input.GetKeyDown(KeyCode.A)) // left
+        {
+            player.State.OnMovePressed(player, Direction.LEFT);
+        }
+        if (Input.GetAxis("Horizontal") > 0) //Input.GetKeyDown(KeyCode.D)) // right
+        {
+            player.State.OnMovePressed(player, Direction.RIGHT);
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) // jump
+        {
+            player.State.OnJumpPressed(player);
+        }
+
     }
 
-    //Determines if the character should be switched to the MoveState based on the X value of the characters's 
-    //Movement Vector2. If the x value is not 0, then the character is moving.
-    private bool ShouldMove()
-    {
-        return player.Movement.x != 0;
-    }
-
-    //Determines if the Character should be jumping based on the the 2 bools which correspond to
-    //1. if the "Jump" input is pressed (true) and 2. the velocity of the Y axis is at 0 (true).
-    private bool ShouldJump()
-    {
-        return player.isJumping && player.isGrounded;
-    }
 }

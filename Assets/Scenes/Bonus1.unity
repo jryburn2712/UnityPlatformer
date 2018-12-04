@@ -225,7 +225,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -239,7 +239,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 42672704}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b7ff1bf17ac1de142b155f5c16c069e1, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -268,9 +268,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 500
-  PlayerSpeed: 10
-  FacingLeft: 0
+  isFacingLeft: 0
+  PlayerSpeed: 500
   playerAnimator: {fileID: 0}
+  CachedRigidBody: {fileID: 0}
 --- !u!114 &42672711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,11 +816,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4571661044231022, guid: 2a6a4cc2abab5ab4daaf07533a50d11d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.68
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 4571661044231022, guid: 2a6a4cc2abab5ab4daaf07533a50d11d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.31
+      value: -0.48
       objectReference: {fileID: 0}
     - target: {fileID: 4571661044231022, guid: 2a6a4cc2abab5ab4daaf07533a50d11d, type: 2}
       propertyPath: m_LocalPosition.z
