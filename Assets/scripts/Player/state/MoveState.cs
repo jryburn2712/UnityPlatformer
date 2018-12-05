@@ -5,6 +5,7 @@ class MoveState : State
     private bool movingLeft;
     private bool movingRight;
     private Direction direction;
+    private const float PLAYER_SPEED_TO_ANIMATION_SPEED_RATIO = 150.0f;
 
     public override void OnStateEnter(Player player)
     {
@@ -12,6 +13,7 @@ class MoveState : State
 
         if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_walk"))
         {
+            player.playerAnimator.speed = player.PlayerSpeed / PLAYER_SPEED_TO_ANIMATION_SPEED_RATIO;
             player.playerAnimator.Play("male_walk");
         }
 

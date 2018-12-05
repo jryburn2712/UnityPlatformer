@@ -2,6 +2,9 @@
 
 class AttackState : State
 {
+
+    private const float ATTACK_SPEED = 2.0f;
+
     public override void OnStateEnter(Player player)
     {
         base.OnStateEnter(player);
@@ -9,10 +12,11 @@ class AttackState : State
         //Start Attack Animation. Check to make sure it's not already playing.
         if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_attack"))
         {
+            player.playerAnimator.speed = ATTACK_SPEED;
             player.playerAnimator.Play("male_attack");
         }
-    }
 
+    }
     public override void Tick(Player player)
     {
         Attack(player);

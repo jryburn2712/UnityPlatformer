@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
 class IdleState : State
-{    
+{
+
+    private const float IDLE_ANIMATION_SPEED = 1.5f;
     public override void OnStateEnter(Player player)
     {
         base.OnStateEnter(player);
@@ -12,6 +14,7 @@ class IdleState : State
         //Play the idle animation upon entering idle state if it's not already playing
         if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_idle"))
         {
+            player.playerAnimator.speed = IDLE_ANIMATION_SPEED;
             player.playerAnimator.Play("male_idle");
         }
     }

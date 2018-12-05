@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     public bool isFacingLeft = false;
 
-    public float PlayerSpeed = 100.0f;
+    public float PlayerSpeed = 300.0f;
 
     public Dictionary<StateType, State> states;
 
