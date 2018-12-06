@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DeathCheck : MonoBehaviour {
-
+public class DeathCheck : MonoBehaviour
+{
     private Player player;
     private float playerHeight;
     private float bottomOfScreen;
@@ -13,14 +13,16 @@ public class DeathCheck : MonoBehaviour {
         playerHeight = player.transform.localScale.y;
         bottomOfScreen = Camera.main.ScreenToWorldPoint(Vector3.zero).y;
     }
+
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
         //Only run these checks if the player is not already dead.
         if (player.State != player.states[StateType.DEATH])
         {

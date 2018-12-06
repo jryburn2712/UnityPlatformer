@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     [HideInInspector]public bool isFacingLeft = false;
 
+    public bool isDead = false;
+
     public float PlayerSpeed = 300.0f;
 
     public int playerHealth = 300;
@@ -89,7 +91,8 @@ public class Player : MonoBehaviour
         if (gender is Male)
         {
             cachedSpriteRenderer.sprite = maleSprite;
-        } else
+        }
+        else
         {
             cachedSpriteRenderer.sprite = femaleSprite;
         }

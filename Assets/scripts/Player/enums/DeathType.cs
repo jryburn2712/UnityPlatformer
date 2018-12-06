@@ -1,6 +1,4 @@
-﻿
-enum DeathType
+﻿enum DeathType
 {
     FALL, ENEMY
 }
-

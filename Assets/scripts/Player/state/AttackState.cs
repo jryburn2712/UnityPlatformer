@@ -2,7 +2,6 @@
 
 class AttackState : State
 {
-
     private const float ATTACK_SPEED = 2.0f;
 
     public override void OnStateEnter(Player player)
@@ -15,7 +14,6 @@ class AttackState : State
             player.playerAnimator.speed = ATTACK_SPEED;
             player.playerAnimator.Play(player.getAttackAnimName());
         }
-
     }
     public override void Tick(Player player)
     {

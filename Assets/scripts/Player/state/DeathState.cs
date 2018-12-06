@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,12 +21,12 @@ class DeathState : State
 
             //Wait for a few seconds and then restart the level. 
             //TODO: Add a death screen that allows to restart or go back to menu instead of restarting automatically.
-            player.StartCoroutine(waitAfterDeath());
+            player.StartCoroutine(waitAfterDeath(player));
         } else
         {
             //If the player fell off the map, there is no need to play the death animation. Just restart the level.
             //TODO: Again, add death screen as opposed to just restarting the level.
-            RestartCurrentLevel();
+            RestartCurrentLevel(player);
         }
     }
 
@@ -41,15 +40,17 @@ class DeathState : State
         this.DeathType = deathType;
     }
 
-    private void RestartCurrentLevel()
+    private void RestartCurrentLevel(Player player)
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        //Scene scene = SceneManager.GetActiveScene();
+        //SceneManager.LoadScene(scene.name);
+
+        player.isDead = true;
     }
 
-    private IEnumerator waitAfterDeath()
+    private IEnumerator waitAfterDeath(Player player)
     {
         yield return new WaitForSeconds(3);
-        RestartCurrentLevel();
+        RestartCurrentLevel(player);
     }
 }
