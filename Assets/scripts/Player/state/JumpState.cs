@@ -46,6 +46,7 @@ class JumpState : State
             if (beforeJump)
             {
                 player.CachedRigidBody.AddForce(new Vector2(0, player.jumpForce), ForceMode2D.Impulse);
+                player.playerAudioSource.PlayOneShot(player.getJumpAudioClip());
                 beforeJump = false;
             }
             else

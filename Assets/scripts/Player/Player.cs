@@ -7,6 +7,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour 
 {
+    //Set in the editor
+    public Sprite maleSprite, femaleSprite;
+
+    [HideInInspector]public AudioSource playerAudioSource;
+    public AudioClip[] maleJumpSounds, femaleJumpSounds;
+
     //Used to determine which animations should be used
     public CharacterGender gender { get; set; }
 
@@ -27,22 +33,31 @@ public class Player : MonoBehaviour
 
     [HideInInspector]public Rigidbody2D CachedRigidBody;
 
+    [HideInInspector] public SpriteRenderer cachedSpriteRenderer;
+
+    void Awake()
+    {
+        //For now, hard code the character's gender. This will be changed when a charcter select screen is added.
+        gender = new Male(this);
+        cachedSpriteRenderer = GetComponent<SpriteRenderer>();
+        //Set the sprite to be either male or female
+        setCharacterSprite();
+    }
+
     // Use this for initialization
     void Start ()
     {
-
-        //For now, hard code the character's gender. This will be changed when a charcter select screen is added.
-        gender = new Female();
-
-        playerAnimator = GetComponent<Animator>();
+        //Get refernces to necessary objects
+        playerAnimator = GetComponent<Animator>();       
+        CachedRigidBody = GetComponent<Rigidbody2D>();
+        playerAudioSource = GetComponent<AudioSource>();
+        
 
         states = initStates();
 
         //Character will start idle
         State = states[StateType.IDLE];
-
-        //Characters Rigidbody component will be cached as a variable
-        CachedRigidBody = GetComponent<Rigidbody2D>();
+        
     }    
 
       
@@ -69,6 +84,17 @@ public class Player : MonoBehaviour
         return states;
     }
 
+    private void setCharacterSprite()
+    {
+        if (gender is Male)
+        {
+            cachedSpriteRenderer.sprite = femaleSprite;
+        } else
+        {
+            cachedSpriteRenderer.sprite = maleSprite;
+        }
+    }
+
     public string getIdleAnimName()
     {
         return gender.getIdleAnimName();
@@ -87,5 +113,10 @@ public class Player : MonoBehaviour
     public string getDeathAnimName()
     {
         return gender.getDeathAnimName();
+    }
+
+    public AudioClip getJumpAudioClip()
+    {
+        return gender.getJumpAudio();
     }
 }

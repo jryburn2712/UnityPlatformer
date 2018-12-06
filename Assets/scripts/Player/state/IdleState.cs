@@ -7,7 +7,7 @@ class IdleState : State
     public override void OnStateEnter(Player player)
     {
         base.OnStateEnter(player);
-        
+        Debug.Log("Entered idle state");
         //Set the character's x velocity to 0 when entering idle state so the character doesn't keep sliding 
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, player.GetComponent<Rigidbody2D>().velocity.y);
 

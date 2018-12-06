@@ -1,9 +1,19 @@
 ﻿
-public interface CharacterGender
+public abstract class CharacterGender
 {
-    string getWalkAnimName();
-    string getIdleAnimName();
-    string getAttackAnimName();
-    string getDeathAnimName();
+    protected Player player;
+
+    public CharacterGender(Player player)
+    {
+        this.player = player;
+    }
+
+    public abstract string getWalkAnimName();
+    public abstract string getIdleAnimName();
+    public abstract string getAttackAnimName();
+    public abstract string getDeathAnimName();
+
+    public abstract UnityEngine.AudioClip getJumpAudio();
+    
 }
 
