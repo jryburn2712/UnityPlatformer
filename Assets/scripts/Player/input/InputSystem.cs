@@ -34,5 +34,12 @@ class InputSystem : MonoBehaviour
         {
             player.State.OnAttackPressed(player);
         }
+
+        
+        //Using only for testing player's DeathState. Each time the right mouse button is clicked, the player loses 100 health. 
+        if (Input.GetButtonDown("Fire2"))
+        {
+            player.playerHealth -= 100;
+        }
     }
 }

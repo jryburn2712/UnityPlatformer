@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     public float PlayerSpeed = 300.0f;
 
+    public int playerHealth = 300;
+
     public Dictionary<StateType, State> states;
 
     public State State { get; set; }
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
         states[StateType.MOVE] = new MoveState();
         states[StateType.JUMP] = new JumpState();
         states[StateType.ATTACK] = new AttackState();
+        states[StateType.DEATH] = new DeathState();
 
         return states;
     }

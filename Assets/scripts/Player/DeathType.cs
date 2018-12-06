@@ -1,0 +1,6 @@
+﻿
+enum DeathType
+{
+    FALL, ENEMY
+}
+
