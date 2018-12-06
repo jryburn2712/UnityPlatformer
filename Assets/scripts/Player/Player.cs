@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         //For now, hard code the character's gender. This will be changed when a charcter select screen is added.
-        gender = new Male(this);
+        gender = new Female(this);
         cachedSpriteRenderer = GetComponent<SpriteRenderer>();
         //Set the sprite to be either male or female
         setCharacterSprite();
@@ -88,10 +88,10 @@ public class Player : MonoBehaviour
     {
         if (gender is Male)
         {
-            cachedSpriteRenderer.sprite = femaleSprite;
+            cachedSpriteRenderer.sprite = maleSprite;
         } else
         {
-            cachedSpriteRenderer.sprite = maleSprite;
+            cachedSpriteRenderer.sprite = femaleSprite;
         }
     }
 
