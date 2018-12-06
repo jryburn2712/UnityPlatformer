@@ -11,10 +11,10 @@ class MoveState : State
     {
         base.OnStateEnter(player);
 
-        if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_walk"))
+        if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(player.getWalkAnimName()))
         {
             player.playerAnimator.speed = player.PlayerSpeed / PLAYER_SPEED_TO_ANIMATION_SPEED_RATIO;
-            player.playerAnimator.Play("male_walk");
+            player.playerAnimator.Play(player.getWalkAnimName());
         }
 
         //OnMovePressed(player, direction);

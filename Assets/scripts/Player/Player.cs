@@ -7,10 +7,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour 
 {
+    //Used to determine which animations should be used
+    public CharacterGender gender { get; set; }
+
     //Change this to increase or decrease character jump speed
     public float jumpForce = 10.0f;
 
-    public bool isFacingLeft = false;
+    [HideInInspector]public bool isFacingLeft = false;
 
     public float PlayerSpeed = 300.0f;
 
@@ -20,16 +23,22 @@ public class Player : MonoBehaviour
 
     public State State { get; set; }
 
-    public Animator playerAnimator;
+    [HideInInspector]public Animator playerAnimator;
 
-    public Rigidbody2D CachedRigidBody;
+    [HideInInspector]public Rigidbody2D CachedRigidBody;
 
     // Use this for initialization
     void Start ()
     {
-        //Character will start idle
-        states = initStates();
+
+        //For now, hard code the character's gender. This will be changed when a charcter select screen is added.
+        gender = new Female();
+
         playerAnimator = GetComponent<Animator>();
+
+        states = initStates();
+
+        //Character will start idle
         State = states[StateType.IDLE];
 
         //Characters Rigidbody component will be cached as a variable
@@ -58,5 +67,25 @@ public class Player : MonoBehaviour
         states[StateType.DEATH] = new DeathState();
 
         return states;
+    }
+
+    public string getIdleAnimName()
+    {
+        return gender.getIdleAnimName();
+    }
+
+    public string getWalkAnimName()
+    {
+        return gender.getWalkAnimName();
+    }
+
+    public string getAttackAnimName()
+    {
+        return gender.getAttackAnimName();
+    }
+
+    public string getDeathAnimName()
+    {
+        return gender.getDeathAnimName();
     }
 }

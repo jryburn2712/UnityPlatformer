@@ -18,7 +18,7 @@ class DeathState : State
             //Stop the character from moving while Death Animation is Playing
             player.CachedRigidBody.velocity = Vector2.zero;
             //Play the death animation only if the player was killed by an enemy (didn't fall off map)
-            player.playerAnimator.Play("male_dead");
+            player.playerAnimator.Play(player.getDeathAnimName());
 
             //Wait for a few seconds and then restart the level. 
             //TODO: Add a death screen that allows to restart or go back to menu instead of restarting automatically.

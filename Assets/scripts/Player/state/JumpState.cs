@@ -8,12 +8,6 @@ class JumpState : State
 	public override void OnStateEnter(Player player)
 	{
         beforeJump = true;
-
-        //Start Jump Animation. Check to make sure it's not already playing.
-        if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_jump"))
-        {
-            player.playerAnimator.Play("male_jump");
-        }
     }
 
     public override void OnMovePressed(Player player, Direction direction)

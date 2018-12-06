@@ -12,10 +12,10 @@ class IdleState : State
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, player.GetComponent<Rigidbody2D>().velocity.y);
 
         //Play the idle animation upon entering idle state if it's not already playing
-        if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_idle"))
+        if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(player.getIdleAnimName()))
         {
             player.playerAnimator.speed = IDLE_ANIMATION_SPEED;
-            player.playerAnimator.Play("male_idle");
+            player.playerAnimator.Play(player.getIdleAnimName());
         }
     }
 

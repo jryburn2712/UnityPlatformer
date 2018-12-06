@@ -10,10 +10,10 @@ class AttackState : State
         base.OnStateEnter(player);
 
         //Start Attack Animation. Check to make sure it's not already playing.
-        if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("male_attack"))
+        if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(player.getAttackAnimName()))
         {
             player.playerAnimator.speed = ATTACK_SPEED;
-            player.playerAnimator.Play("male_attack");
+            player.playerAnimator.Play(player.getAttackAnimName());
         }
 
     }
