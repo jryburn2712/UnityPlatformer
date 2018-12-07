@@ -24,6 +24,7 @@ class JumpState : State
     {
         base.OnAttackPressed(player);
         player.State.SetState(player, player.states[StateType.ATTACK]);
+        player.State.OnAttackPressed(player);
     }
 
     public override void Tick(Player player)

@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+
 
 public class SceneSelect : MonoBehaviour
 {
-    private GameScene gameScene;
+    private GameManager gameManager;
     private GameObject player;
     private Player _player;
 
     // Use this for initialization
     void Start ()
     {
-        gameScene = GetComponent<GameScene>();
+        gameManager = GetComponent<GameManager>();
         player = GameObject.FindWithTag("Player");
         _player = (Player)player.GetComponent(typeof(Player)); 
     }
@@ -22,7 +20,6 @@ public class SceneSelect : MonoBehaviour
     {
         if (_player.isDead == true)
         {
-            gameScene.GameState.OnGameOver(gameScene);
             _player.isDead = false;
         }
     }

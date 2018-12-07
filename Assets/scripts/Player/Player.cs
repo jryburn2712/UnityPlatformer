@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour 
 {
+
+    public GameManager gameManager;
     //Set in the editor
     public Sprite maleSprite, femaleSprite;
 
@@ -40,10 +42,12 @@ public class Player : MonoBehaviour
     void Awake()
     {
         //For now, hard code the character's gender. This will be changed when a charcter select screen is added.
-        gender = new Female(this);
+        gender = new Male(this);
         cachedSpriteRenderer = GetComponent<SpriteRenderer>();
         //Set the sprite to be either male or female
         setCharacterSprite();
+        //Get a reference to the Singleton GameManager
+        gameManager = GameManager.Instance;
     }
 
     // Use this for initialization
@@ -59,7 +63,10 @@ public class Player : MonoBehaviour
 
         //Character will start idle
         State = states[StateType.IDLE];
-        
+
+
+        //Set the player reference in the GameManager class
+        gameManager.setPlayer(this);
     }    
 
       

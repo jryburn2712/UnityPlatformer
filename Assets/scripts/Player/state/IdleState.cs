@@ -14,9 +14,10 @@ class IdleState : State
         //Play the idle animation upon entering idle state if it's not already playing
         if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(player.getIdleAnimName()))
         {
+            
             player.playerAnimator.speed = IDLE_ANIMATION_SPEED;
             player.playerAnimator.Play(player.getIdleAnimName());
-        }
+        } 
     }
 
     public override void OnMovePressed(Player player, Direction direction)

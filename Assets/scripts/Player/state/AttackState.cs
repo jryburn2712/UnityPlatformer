@@ -7,7 +7,6 @@ class AttackState : State
     public override void OnStateEnter(Player player)
     {
         base.OnStateEnter(player);
-
         //Start Attack Animation. Check to make sure it's not already playing.
         if (!player.playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(player.getAttackAnimName()))
         {
@@ -15,6 +14,7 @@ class AttackState : State
             player.playerAnimator.Play(player.getAttackAnimName());
         }
     }
+
     public override void Tick(Player player)
     {
         Attack(player);
