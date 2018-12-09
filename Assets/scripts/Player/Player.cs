@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
         setCharacterSprite();
         //Get a reference to the Singleton GameManager
         gameManager = GameManager.Instance;
+        //Set the player reference in the GameManager class
+        gameManager.setPlayer(this);
     }
 
     // Use this for initialization
@@ -63,10 +65,6 @@ public class Player : MonoBehaviour
 
         //Character will start idle
         State = states[StateType.IDLE];
-
-
-        //Set the player reference in the GameManager class
-        gameManager.setPlayer(this);
     }    
 
       

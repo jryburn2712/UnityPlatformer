@@ -59,10 +59,16 @@ public class PlatformMove : MonoBehaviour {
     //Checks if the platform has reached the max travel range
     private void checkRange()
     {       
-        if (Mathf.Abs(startingX - transform.position.x) >= range || (transform.position.x <= startingX && direction != Direction.RIGHT))
+        //if (Mathf.Abs(startingX - transform.position.x) >= range || (transform.position.x <= startingX && direction != Direction.RIGHT))
+        //{
+        //    FlipDirection();
+        //} 
+
+        if (direction == Direction.RIGHT && transform.position.x - startingX >= range ||
+            direction == Direction.LEFT && transform.position.x <= startingX)
         {
             FlipDirection();
-        } 
+        }
     }
 
     private void FlipDirection()

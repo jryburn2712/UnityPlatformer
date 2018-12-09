@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 212072677024649276}
   - component: {fileID: 61290580343800492}
   m_Layer: 0
-  m_Name: MediumPole 1
+  m_Name: MediumPole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

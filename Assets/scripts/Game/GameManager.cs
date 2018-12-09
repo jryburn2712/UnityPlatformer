@@ -82,6 +82,11 @@ public class GameManager
         SceneManager.LoadScene(sceneName);
     }
 
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+    }
+
     public string GetCurrentSceneName()
     {
         return SceneManager.GetActiveScene().name;

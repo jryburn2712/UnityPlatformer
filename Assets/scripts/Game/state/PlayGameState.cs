@@ -1,8 +1,7 @@
 ﻿
 public class PlayGameState : GameState
 {
-    private const string sceneToLoad = "Bonus1";
-
+    
     public override void OnGameStateEnter(GameState previousGameState)
     {
         base.OnGameStateEnter(previousGameState);
@@ -13,7 +12,7 @@ public class PlayGameState : GameState
         } else
         {
             //Load new scene
-            GameManager.Instance.LoadScene(sceneToLoad);
+            GameManager.Instance.LoadNextScene();
         }
         
     }
