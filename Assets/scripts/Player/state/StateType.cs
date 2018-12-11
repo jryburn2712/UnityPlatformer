@@ -1,4 +1,4 @@
 ﻿public enum StateType
 {
-    IDLE, MOVE, JUMP, ATTACK, DEATH
+    IDLE, MOVE, JUMP, ATTACK, DEATH, KNOCKED
 }

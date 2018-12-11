@@ -3,18 +3,22 @@ using UnityEngine;
 
 class DetectPlantBodyHit : MonoBehaviour
 {
-    Player player;
+    //Parent of this object
+    private FoePlant plant;
 
     void Start()
     {
-        player = GameManager.Instance.player;
+        plant = transform.parent.gameObject.GetComponent<FoePlant>();
+    }
+
+    void Update()
+    {
+
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Player Collided with Plant body");
-        
-        
+        plant.OnBodyCollision(other);                
     }
 
 }

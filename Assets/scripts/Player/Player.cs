@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 
     public float PlayerSpeed = 300.0f;
 
+    public float knockBackForce = 350.0f;
+
     public int playerHealth = 300;
 
     public Dictionary<StateType, State> states;
@@ -87,6 +89,7 @@ public class Player : MonoBehaviour
         states[StateType.JUMP] = new JumpState();
         states[StateType.ATTACK] = new AttackState();
         states[StateType.DEATH] = new DeathState();
+        states[StateType.KNOCKED] = new KnockedBackState();
 
         return states;
     }
