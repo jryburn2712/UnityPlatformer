@@ -43,22 +43,23 @@ class FoePlant : MonoBehaviour
     //Called from DetectPlantBodyHit script
     public void OnBodyCollision(Collision2D other)
     {
-        Debug.Log("body hit");
-        player.State.SetState(player, player.states[StateType.KNOCKED]);
+        player.playerHealth -= 100;
+
+
+        //Only knock the player back if he's not dead (a.k.a. he/she has greater than 0 health)
+        if (player.playerHealth > 0)
+        {
+            //Player died to enemy, set the death type in DeathState
+            ((DeathState)player.states[StateType.DEATH]).SetDeathType(DeathType.ENEMY);
+
+            player.State.SetState(player, player.states[StateType.KNOCKED]);
+        }
     }
 
     private IEnumerator cleanup()
     {
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
-    }
-
-    private void knockPlayerBack()
-    {
-        player.GetComponent<InputSystem>().enabled = false;
-        player.CachedRigidBody.velocity = Vector2.zero;
-        player.CachedRigidBody.AddForce(Vector2.left * 1500 * Time.deltaTime, ForceMode2D.Impulse);
-
     }
 
     private void disablePlant()

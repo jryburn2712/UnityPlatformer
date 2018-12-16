@@ -42,10 +42,7 @@ class DeathState : State
 
     private void RestartCurrentLevel(Player player)
     {
-        //Scene scene = SceneManager.GetActiveScene();
-        //SceneManager.LoadScene(scene.name);
-
-        player.isDead = true;
+        GameManager.Instance.RestartCurrentScene();
     }
 
     private IEnumerator waitAfterDeath(Player player)

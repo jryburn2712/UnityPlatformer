@@ -9,7 +9,6 @@ class KnockedBackState : State
     public override void OnStateEnter(Player player)
     {
         base.OnStateEnter(player);
-        Debug.Log("xVel: " + player.CachedRigidBody.velocity.x);
         player.playerAnimator.StopPlayback();
 
         //Get original color of sprite
